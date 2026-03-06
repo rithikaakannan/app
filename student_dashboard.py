@@ -1,29 +1,40 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
 
+def student_dashboard():
 
-def show_student_dashboard():
+    st.sidebar.title("Student Menu")
 
-    st.title("🎓 Student Dashboard")
+    menu = st.sidebar.selectbox(
+        "Select Option",
+        ["Dashboard", "Attendance", "Assignments", "Profile"]
+    )
 
-    col1, col2, col3 = st.columns(3)
+    if menu == "Dashboard":
 
-    col1.metric("Attendance", "85%")
-    col2.metric("Assignments Pending", "2")
-    col3.metric("Course Progress", "70%")
+        st.header("📊 Student Dashboard")
 
-    st.subheader("Course Progress")
+        col1, col2, col3 = st.columns(3)
 
-    data = pd.DataFrame({
-        "Course": ["Python", "DSA", "DBMS", "AI"],
-        "Progress": [80, 60, 75, 50]
-    })
+        col1.metric("Attendance", "85%")
+        col2.metric("Assignments Submitted", "5")
+        col3.metric("Pending Assignments", "2")
 
-    fig = px.bar(data, x="Course", y="Progress", color="Course")
-    st.plotly_chart(fig, use_container_width=True)
+    elif menu == "Attendance":
 
-    st.subheader("Notifications")
+        st.header("📅 Attendance")
 
-    st.info("Assignment 2 due tomorrow")
-    st.info("AI class rescheduled")
+        st.write("Your attendance is 85%")
+
+    elif menu == "Assignments":
+
+        st.header("📚 Assignments")
+
+        st.write("1. AI Assignment")
+        st.write("2. Python Lab")
+
+    elif menu == "Profile":
+
+        st.header("👤 Profile")
+
+        st.write("User:", st.session_state.user)
+        st.write("Role: Student")
