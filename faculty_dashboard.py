@@ -1,24 +1,39 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
 
+def faculty_dashboard():
 
-def show_faculty_dashboard():
+    st.sidebar.title("Faculty Menu")
 
-    st.title("👨‍🏫 Faculty Dashboard")
+    menu = st.sidebar.selectbox(
+        "Select Option",
+        ["Dashboard", "Attendance", "Assignments", "Profile"]
+    )
 
-    col1, col2, col3 = st.columns(3)
+    if menu == "Dashboard":
 
-    col1.metric("Total Students", "120")
-    col2.metric("Assignments Submitted", "85")
-    col3.metric("Classes Today", "4")
+        st.header("📊 Faculty Dashboard")
 
-    st.subheader("Student Performance")
+        col1, col2, col3 = st.columns(3)
 
-    data = pd.DataFrame({
-        "Student": ["A", "B", "C", "D"],
-        "Marks": [80, 75, 90, 60]
-    })
+        col1.metric("Total Students", "60")
+        col2.metric("Assignments Given", "8")
+        col3.metric("Classes Taken", "20")
 
-    fig = px.line(data, x="Student", y="Marks")
-    st.plotly_chart(fig, use_container_width=True)
+    elif menu == "Attendance":
+
+        st.header("📅 Manage Attendance")
+
+        st.write("Faculty can mark attendance here")
+
+    elif menu == "Assignments":
+
+        st.header("📚 Upload Assignment")
+
+        st.file_uploader("Upload Assignment")
+
+    elif menu == "Profile":
+
+        st.header("👤 Profile")
+
+        st.write("User:", st.session_state.user)
+        st.write("Role: Faculty")
