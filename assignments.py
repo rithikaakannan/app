@@ -3,24 +3,26 @@ import pandas as pd
 
 
 def faculty_assignments():
+import streamlit as st
 
-    st.title("📂 Upload Assignment")
+def faculty_assignments():
+
+    st.header("📚 Upload Assignment")
 
     title = st.text_input("Assignment Title")
 
     file = st.file_uploader("Upload File")
 
-    if st.button("Upload"):
-        st.success("Assignment Uploaded")
-
+    if st.button("Publish Assignment"):
+        st.success("Assignment Published")
 
 def student_assignments():
+    st.header("📚 Assignments")
 
-    st.title("📝 Assignments")
+    st.write("1. AI Assignment - Due Tomorrow")
+    st.write("2. Python Lab - Due Friday")
 
-    data = pd.DataFrame({
-        "Assignment": ["AI Project", "Python Lab"],
-        "Due Date": ["10 Apr", "15 Apr"]
-    })
+    file = st.file_uploader("Upload Assignment")
 
-    st.table(data)
+    if file:
+        st.success("Assignment Uploaded")
