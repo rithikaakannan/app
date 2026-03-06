@@ -13,9 +13,9 @@ faculty = {
 
 # ---------- STYLE ----------
 def login_style():
+
     page_bg = """
     <style>
-
     [data-testid="stAppViewContainer"]{
     background-image: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470");
     background-size: cover;
@@ -41,15 +41,6 @@ def login_style():
     margin-bottom:10px;
     }
 
-    .subtitle{
-    color:white;
-    margin-bottom:20px;
-    }
-
-    .stTextInput input{
-    border-radius:10px;
-    }
-
     .stButton button{
     width:100%;
     border-radius:25px;
@@ -57,7 +48,6 @@ def login_style():
     color:black;
     font-weight:bold;
     }
-
     </style>
     """
 
@@ -76,13 +66,11 @@ def student_login():
     password = st.text_input("Password", type="password")
 
     if st.button("Login as Student"):
-
         if user in students and students[user] == password:
             st.session_state["role"] = "student"
             st.session_state["user"] = user
             st.success("Login Successful")
             st.rerun()
-
         else:
             st.error("Invalid ID or Password")
 
@@ -101,13 +89,11 @@ def faculty_login():
     password = st.text_input("Password", type="password")
 
     if st.button("Login as Faculty"):
-
         if user in faculty and faculty[user] == password:
             st.session_state["role"] = "faculty"
             st.session_state["user"] = user
             st.success("Login Successful")
             st.rerun()
-
         else:
             st.error("Invalid ID or Password")
 
