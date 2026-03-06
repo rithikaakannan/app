@@ -1,29 +1,25 @@
 import streamlit as st
 import pandas as pd
-
-
 def faculty_attendance():
 
-    st.title("📋 Mark Attendance")
+    st.header("📅 Mark Attendance")
 
     students = ["Student1", "Student2", "Student3"]
 
-    attendance = {}
-
-    for s in students:
-        attendance[s] = st.checkbox(s)
+    for student in students:
+        st.checkbox(student)
 
     if st.button("Submit Attendance"):
-        st.success("Attendance Saved")
-
-
+        st.success("Attendance Recorded Successfully")
 def student_attendance():
 
-    st.title("📊 My Attendance")
+    st.header("📅 Student Attendance")
 
-    data = pd.DataFrame({
-        "Subject": ["Python", "DSA", "DBMS"],
-        "Attendance %": [85, 78, 90]
-    })
+    st.write("Your Attendance Percentage: **85%**")
+
+    data = {
+        "Subject": ["AI", "Python", "DBMS"],
+        "Attendance": ["90%", "80%", "85%"]
+    }
 
     st.table(data)
